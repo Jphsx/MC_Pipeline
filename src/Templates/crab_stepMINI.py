@@ -16,7 +16,7 @@ config.JobType.allowUndistributedCMSSW = True
 
 config.section_("Data")
 config.Data.outputPrimaryDataset = 'YYYY'
-config.Data.userInputFiles = open('./MCPipeline/Projects/PPPP/XXXX/crab_aod4mini_list.txt').readlines()
+config.Data.userInputFiles = open('./MC_Pipeline/Projects/PPPP/XXXX/crab_aod4mini_list.txt').readlines()
 
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1

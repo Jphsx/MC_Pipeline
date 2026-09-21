@@ -1,13 +1,13 @@
 NEVENT=10
 NAME=XXXX
 PROJECT=PPPP
-
+FRAGMENT=FFFF
 
 #assume frags have been placed and scram b'd
 #this will be run from directory of script, automatically do all 3
 
-pushd ../../
-cmsDriver.py Configuration/GenProduction/python/${NAME}-fragment.py \
+pushd ../../../../
+cmsDriver.py Configuration/GenProduction/python/${FRAGMENT} \
     --python_filename ${NAME}_1_cfg.py \
     --eventcontent RAWSIM,LHE \
     --customise Configuration/DataProcessing/Utils.addMonitoring \
@@ -23,7 +23,7 @@ cmsDriver.py Configuration/GenProduction/python/${NAME}-fragment.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_1_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_1_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_2_cfg.py \
@@ -43,7 +43,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_2_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_2_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_3_cfg.py \
@@ -61,7 +61,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_3_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_3_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 
 #also have mini and nano loaded up
@@ -81,7 +81,7 @@ cmsDriver.py  \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_4_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_4_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 
 cmsDriver.py \
@@ -99,6 +99,6 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_5_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_5_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 popd
 

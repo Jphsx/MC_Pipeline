@@ -79,9 +79,9 @@ def create_gridpoint_files( project_data, project_name, project_year):
 
 def create_super_launchers( csv_reader, project_name, project_year ):
     if int(project_year) >= 2022:
-        create_super_launchers_r3( csv_reader, project_name )
+        create_super_launchers_r3( csv_reader, project_name, project_year)
     if int(project_year) <= 2018:
-        create_super_launchers_r2( csv_reader, project_name )
+        create_super_launchers_r2( csv_reader, project_name, project_year)
 
 def create_gridpoint_files_r3(  project_data, project_name, project_year ):
     #masses, ctau should already be placed in fragment and fragment should already link to GP, this stuff will not be done here
@@ -89,11 +89,12 @@ def create_gridpoint_files_r3(  project_data, project_name, project_year ):
     #replace content with gridpoint data in templates
     # Define file paths
     driver_year = "doDriver_"+project_year
+    fragment = project_data['fragment']
     target_path = "./Projects/"+project_name+"/"+project_data['dataset']+"/"
     units_per_job = 800 #decent number @ expected 30% efficiency
     njobs = str(int(project_data['events'])/int(units_per_job))
     units_per_job = str(units_per_job)
-    copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name}) 
+    copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name, "FFFF":fragment}) 
     copy_and_update_template( "src/Templates/crab_stepGEN.py", target_path+"crab_stepGEN.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['dataset']+"_"+project_year})
     copy_and_update_template( "src/Templates/crab_stepDIGI.py", target_path+"crab_stepDIGI.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
     copy_and_update_template( "src/Templates/crab_stepAOD.py", target_path+"crab_stepAOD.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
@@ -106,11 +107,12 @@ def create_gridpoint_files_r2(  project_data, project_name, project_year ):
     #replace content with gridpoint data in templates
     # Define file paths
     driver_year = "doDriver_"+project_year
+    fragment = project_data['fragment']
     target_path = "./Projects/"+project_name+"/"+project_data['dataset']+"/"
     units_per_job = 800 #decent number @ expected 30% efficiency
     njobs = str(int(project_data['events'])/int(units_per_job))
     units_per_job = str(units_per_job)
-    copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name})
+    copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name, "FFFF":fragment})
     copy_and_update_template( "src/Templates/crab_stepGEN_UL.py", target_path+"crab_stepGEN_UL.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['dataset']+"_"+project_year})
     copy_and_update_template( "src/Templates/crab_stepSIM_UL.py", target_path+"crab_stepSIM_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
     copy_and_update_template( "src/Templates/crab_stepDIGI_UL.py", target_path+"crab_stepDIGI_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
@@ -135,8 +137,14 @@ def create_super_launcher( super_name,project_name, all_project_data, template_s
             line = template_str.format( project_data['dataset'] )
             file.write(line)
 
+def create_super_driver( super_name,project_name, all_project_data, template_str, year):
+    with open("Projects/"+project_name+"/"+super_name, "w", encoding="utf-8") as file:
+        for project_data in all_project_data:
+            line = template_str.format( project_data['dataset'], year )
+            file.write(line)
 
-def create_super_launchers_r3( all_project_data, project_name ):
+
+def create_super_launchers_r3( all_project_data, project_name,year ):
         
     #gen launch string
     GEN_template_str=  "pushd {0}; ./runCrab.sh 1 0 0 0 0; popd; \n"
@@ -165,7 +173,10 @@ def create_super_launchers_r3( all_project_data, project_name ):
     create_super_launcher("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
     create_super_launcher("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
 
-def create_super_launchers_r2( all_project_data, project_name ):
+    driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
+    create_super_driver("superdriver.sh", project_name, all_project_data, driver_template_str, year)
+
+def create_super_launchers_r2( all_project_data, project_name, year ):
 
         #gen launch string
     GEN_template_str=  "pushd {0}; ./runCrab_UL.sh 1 0 0 0 0 0 0; popd; \n"
@@ -201,9 +212,9 @@ def create_super_launchers_r2( all_project_data, project_name ):
     create_super_launcher("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str)
     create_super_launcher("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
     create_super_launcher("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
-
-
-
+    
+    driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
+    create_super_driver("superdriver.sh", project_name, all_project_data, driver_template_str, year)
     
 def main():
     # 1. Initialize the argument parser

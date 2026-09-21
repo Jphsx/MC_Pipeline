@@ -1,0 +1,4 @@
+dataset,fragment,events,generator,gridpack
+T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-0p1cm_TuneCP5_13p6TeV_madgraph-pythia8,T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-0p1cm_fragment.py,300000,madgraph,T5Zg_mGo-2300_el8_amd64_gcc12_CMSSW_14_0_18_tarball.tar.xz
+T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-20cm_TuneCP5_13p6TeV_madgraph-pythia8,T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-20cm_fragment.py,300000,madgraph,T5Zg_mGo-2300_el8_amd64_gcc12_CMSSW_14_0_18_tarball.tar.xz
+T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-300cm_TuneCP5_13p6TeV_madgraph-pythia8,T5Zg_mGo-2300_mN2-1200_mN1-1000_N2ctau-300cm_fragment.py,300000,madgraph,T5Zg_mGo-2300_el8_amd64_gcc12_CMSSW_14_0_18_tarball.tar.xz

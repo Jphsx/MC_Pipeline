@@ -17,7 +17,7 @@ config.JobType.maxMemoryMB = 2800
 
 config.section_("Data")
 config.Data.outputPrimaryDataset = 'YYYY'
-config.Data.userInputFiles = open('./MCPipeline/Projects/PPPP/XXXX/crab_gen4digi_list.txt').readlines()
+config.Data.userInputFiles = open('./MC_Pipeline/Projects/PPPP/XXXX/crab_gen4digi_list.txt').readlines()
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.publication = False

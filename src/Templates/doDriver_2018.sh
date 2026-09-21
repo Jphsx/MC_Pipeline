@@ -1,11 +1,11 @@
 NEVENT=10
 NAME=XXXX
 PROJECT=PPPP
+FRAGMENT=FFFF
 
 
-
-pushd ../../
-cmsDriver.py Configuration/GenProduction/python/${NAME}-fragment.py \
+pushd ../../../../
+cmsDriver.py Configuration/GenProduction/python/${FRAGMENT} \
     --python_filename ${NAME}_1_cfg.py \
     --eventcontent RAWSIM,LHE \
     --customise Configuration/DataProcessing/Utils.addMonitoring \
@@ -20,7 +20,7 @@ cmsDriver.py Configuration/GenProduction/python/${NAME}-fragment.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_1_cfg.py ./MCPipeline/Projects/{$PROJECT}/${NAME}/
+mv ${NAME}_1_cfg.py ./MC_Pipeline/Projects/{$PROJECT}/${NAME}/
 
 cmsDriver.py \
         --python_filename ${NAME}_2_cfg.py \
@@ -39,7 +39,7 @@ cmsDriver.py \
         --mc \
         -n ${NEVENT}
 
-mv ${NAME}_2_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_2_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_3_cfg.py \
@@ -60,7 +60,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_3_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_3_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_4_cfg.py \
@@ -78,7 +78,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_4_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_4_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 cmsDriver.py \
     --python_filename ${NAME}_5_cfg.py \
     --eventcontent AODSIM \
@@ -95,7 +95,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_5_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_5_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_6_cfg.py \
@@ -114,7 +114,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_6_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_6_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
     --python_filename ${NAME}_7_cfg.py \
@@ -130,7 +130,7 @@ cmsDriver.py \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_7_cfg.py ./MCPipeline/Projects/${PROJECT}/${NAME}/
+mv ${NAME}_7_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 popd
 
