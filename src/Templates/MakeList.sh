@@ -19,7 +19,7 @@ STAMP=${last_dir}
 outfile=crab_gen4digi_list.txt
 xrdfs ${PREFIX} ls /store/user/janguian/${PD}/${NAME}/${STAMP}/0000/ > ${outfile}
 sed -i 's/^/root:\/\/cmseos.fnal.gov\//' ${outfile}
-sed -i '/\.lhe/d' ${outfile}
+sed -i '/\inLHE/d' ${outfile}
 fi
 
 if [ ${DIGI4AOD} -eq 1 ]
