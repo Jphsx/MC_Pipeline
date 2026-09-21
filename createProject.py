@@ -168,10 +168,10 @@ def create_super_launchers_r3( all_project_data, project_name,year ):
     a4m_template_str= "pushd {0}; ./Makelist.sh 0 0 1 0 {0} {1}; popd; \n"
     m4n_template_str= "pushd {0}; ./Makelist.sh 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher_year("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str)
-    create_super_launcher_year("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str)
-    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
-    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
+    create_super_launcher_year("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str, year)
+    create_super_launcher_year("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str, year)
+    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str, year)
+    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str, year)
 
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
     create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
@@ -206,12 +206,12 @@ def create_super_launchers_r2( all_project_data, project_name, year ):
     a4m_template_str= "pushd {0}; ./Makelist 0 0 0 0 1 0 {0} {1}; popd; \n"
     m4n_template_str= "pushd {0}; ./Makelist 0 0 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher_year("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str)
-    create_super_launcher_year("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str)
-    create_super_launcher_year("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str)
-    create_super_launcher_year("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str)
-    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
-    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
+    create_super_launcher_year("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str, year)
+    create_super_launcher_year("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str, year)
+    create_super_launcher_year("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str, year)
+    create_super_launcher_year("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str, year)
+    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str, year)
+    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str, year)
     
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
     create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
