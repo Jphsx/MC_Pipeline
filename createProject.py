@@ -137,7 +137,7 @@ def create_super_launcher( super_name,project_name, all_project_data, template_s
             line = template_str.format( project_data['dataset'] )
             file.write(line)
 
-def create_super_driver( super_name,project_name, all_project_data, template_str, year):
+def create_super_launcher_year( super_name,project_name, all_project_data, template_str, year):
     with open("Projects/"+project_name+"/"+super_name, "w", encoding="utf-8") as file:
         for project_data in all_project_data:
             line = template_str.format( project_data['dataset'], year )
@@ -163,18 +163,18 @@ def create_super_launchers_r3( all_project_data, project_name,year ):
 
 
     #listmaking string
-    g4d_template_str= "pushd {0}; ./Makelist.sh 1 0 0 0 {0}; popd; \n"
-    d4a_template_str= "pushd {0}; ./Makelist.sh 0 1 0 0 {0}; popd; \n"
-    a4m_template_str= "pushd {0}; ./Makelist.sh 0 0 1 0 {0}; popd; \n"
-    m4n_template_str= "pushd {0}; ./Makelist.sh 0 0 0 1 {0}; popd; \n"
+    g4d_template_str= "pushd {0}; ./Makelist.sh 1 0 0 0 {0} {1}; popd; \n"
+    d4a_template_str= "pushd {0}; ./Makelist.sh 0 1 0 0 {0} {1}; popd; \n"
+    a4m_template_str= "pushd {0}; ./Makelist.sh 0 0 1 0 {0} {1}; popd; \n"
+    m4n_template_str= "pushd {0}; ./Makelist.sh 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str)
-    create_super_launcher("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str)
-    create_super_launcher("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
-    create_super_launcher("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
+    create_super_launcher_year("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str)
+    create_super_launcher_year("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str)
+    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
+    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
 
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
-    create_super_driver("superdriver.sh", project_name, all_project_data, driver_template_str, year)
+    create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
 
 def create_super_launchers_r2( all_project_data, project_name, year ):
 
@@ -199,22 +199,22 @@ def create_super_launchers_r2( all_project_data, project_name, year ):
 
 
     #listmaking string
-    g4s_template_str= "pushd {0}; ./Makelist 1 0 0 0 0 0 {0}; popd; \n"
-    s4d_template_str= "pushd {0}; ./Makelist 0 1 0 0 0 0 {0}; popd; \n"
-    d4h_template_str= "pushd {0}; ./Makelist 0 0 1 0 0 0 {0}; popd; \n"
-    h4a_template_str= "pushd {0}; ./Makelist 0 0 0 1 0 0 {0}; popd; \n"
-    a4m_template_str= "pushd {0}; ./Makelist 0 0 0 0 1 0 {0}; popd; \n"
-    m4n_template_str= "pushd {0}; ./Makelist 0 0 0 0 0 1 {0}; popd; \n"
+    g4s_template_str= "pushd {0}; ./Makelist 1 0 0 0 0 0 {0} {1}; popd; \n"
+    s4d_template_str= "pushd {0}; ./Makelist 0 1 0 0 0 0 {0} {1}; popd; \n"
+    d4h_template_str= "pushd {0}; ./Makelist 0 0 1 0 0 0 {0} {1}; popd; \n"
+    h4a_template_str= "pushd {0}; ./Makelist 0 0 0 1 0 0 {0} {1}; popd; \n"
+    a4m_template_str= "pushd {0}; ./Makelist 0 0 0 0 1 0 {0} {1}; popd; \n"
+    m4n_template_str= "pushd {0}; ./Makelist 0 0 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str)
-    create_super_launcher("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str)
-    create_super_launcher("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str)
-    create_super_launcher("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str)
-    create_super_launcher("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
-    create_super_launcher("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
+    create_super_launcher_year("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str)
+    create_super_launcher_year("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str)
+    create_super_launcher_year("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str)
+    create_super_launcher_year("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str)
+    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
+    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
     
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
-    create_super_driver("superdriver.sh", project_name, all_project_data, driver_template_str, year)
+    create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
     
 def main():
     # 1. Initialize the argument parser
