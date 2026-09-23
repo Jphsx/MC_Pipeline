@@ -21,7 +21,7 @@ config.Data.unitsPerJob = UUUU
 NJOBS = NNNN  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.publication = False
-config.Data.outputDatasetTag = NAME+'_GEN'
+config.Data.outputDatasetTag ='GEN'
 
 config.section_("Site")
 config.Site.storageSite = 'T3_US_FNALLPC'

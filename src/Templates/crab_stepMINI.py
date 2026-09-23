@@ -21,7 +21,7 @@ config.Data.userInputFiles = open('./MC_Pipeline/Projects/PPPP/XXXX/crab_aod4min
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.publication = False
-config.Data.outputDatasetTag = NAME+'_MINI'
+config.Data.outputDatasetTag ='MINI'
 
 config.section_("Site")
 config.Site.storageSite = 'T3_US_FNALLPC'

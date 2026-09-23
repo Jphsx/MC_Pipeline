@@ -5,8 +5,7 @@ DIGI4AOD=$2
 AOD4MINI=$3
 MINI4NANO=$4
 NAME=$5
-YEAR=$6
-PD=${NAME}_${YEAR}
+PD=$6
 
 
 
@@ -14,6 +13,7 @@ if [ ${GEN4DIGI} -eq 1 ]
 then
 POSTFIX=_GEN
 NAME=${NAME}${POSTFIX}
+NAME=GEN
 last_dir=$(basename "$(xrdfs ${PREFIX} ls /store/user/janguian/${PD}/${NAME}/)")
 STAMP=${last_dir}
 outfile=crab_gen4digi_list.txt
@@ -26,6 +26,7 @@ if [ ${DIGI4AOD} -eq 1 ]
 then
 POSTFIX=_digi
 NAME=${NAME}${POSTFIX}
+NAME=digi
 last_dir=$(basename "$(xrdfs ${PREFIX} ls /store/user/janguian/${PD}/${NAME}/)")
 STAMP=${last_dir}
 outfile=crab_digi4aod_list.txt
@@ -37,6 +38,7 @@ if [ ${AOD4MINI} -eq 1 ]
 then
 POSTFIX=_AOD
 NAME=${NAME}${POSTFIX}
+NAME=AOD
 last_dir=$(basename "$(xrdfs ${PREFIX} ls /store/user/janguian/${PD}/${NAME}/)")
 #echo "The last directory is: $last_dir"
 outfile=crab_aod4mini_list.txt
@@ -50,6 +52,7 @@ if [ ${MINI4NANO} -eq 1 ]
 then
 POSTFIX=_MINI
 NAME=${NAME}${POSTFIX}
+NAME=MINI
 last_dir=$(basename "$(xrdfs ${PREFIX} ls /store/user/janguian/${PD}/${NAME}/)")
 #echo "The last directory is: $last_dir"
 outfile=crab_mini4nano_list.txt

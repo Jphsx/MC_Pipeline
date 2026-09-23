@@ -20,7 +20,7 @@ config.Data.userInputFiles = open('./MC_Pipeline/Projects/PPPP/XXXX/crab_digi4hl
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.publication = False
-config.Data.outputDatasetTag = NAME+'_HLT'
+config.Data.outputDatasetTag = 'HLT'
 
 config.section_("Site")
 config.Site.storageSite = 'T3_US_FNALLPC'

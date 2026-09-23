@@ -95,9 +95,9 @@ def create_gridpoint_files_r3(  project_data, project_name, project_year ):
     njobs = str(int(project_data['events'])/int(units_per_job))
     units_per_job = str(units_per_job)
     copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name, "FFFF":fragment}) 
-    copy_and_update_template( "src/Templates/crab_stepGEN.py", target_path+"crab_stepGEN.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepDIGI.py", target_path+"crab_stepDIGI.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepAOD.py", target_path+"crab_stepAOD.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
+    copy_and_update_template( "src/Templates/crab_stepGEN.py", target_path+"crab_stepGEN.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepDIGI.py", target_path+"crab_stepDIGI.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepAOD.py", target_path+"crab_stepAOD.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/MakeList.sh", target_path+"Makelist.sh",{})
     copy_and_update_template( "src/Templates/runCrab.sh", target_path+"runCrab.sh",{"XXXX":project_data['dataset']})
 
@@ -113,11 +113,11 @@ def create_gridpoint_files_r2(  project_data, project_name, project_year ):
     njobs = str(int(project_data['events'])/int(units_per_job))
     units_per_job = str(units_per_job)
     copy_and_update_template( "src/Templates/"+driver_year+".sh", target_path+driver_year+".sh", {"XXXX":project_data['dataset'],"PPPP":project_name, "FFFF":fragment})
-    copy_and_update_template( "src/Templates/crab_stepGEN_UL.py", target_path+"crab_stepGEN_UL.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepSIM_UL.py", target_path+"crab_stepSIM_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepDIGI_UL.py", target_path+"crab_stepDIGI_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepHLT_UL.py", target_path+"crab_stepHLT_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
-    copy_and_update_template( "src/Templates/crab_stepAOD_UL.py", target_path+"crab_stepAOD_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['dataset']+"_"+project_year})
+    copy_and_update_template( "src/Templates/crab_stepGEN_UL.py", target_path+"crab_stepGEN_UL.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepSIM_UL.py", target_path+"crab_stepSIM_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepDIGI_UL.py", target_path+"crab_stepDIGI_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepHLT_UL.py", target_path+"crab_stepHLT_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepAOD_UL.py", target_path+"crab_stepAOD_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/MakeList_UL.sh", target_path+"Makelist_UL.sh",{})
     copy_and_update_template( "src/Templates/runCrab_UL.sh", target_path+"runCrab_UL.sh",{"XXXX":project_data['dataset']})
 
@@ -144,6 +144,13 @@ def create_super_launcher_year( super_name,project_name, all_project_data, templ
             file.write(line)
 
 
+def create_super_launcher_PD(  super_name, project_name, all_project_data, template_str):
+    with open("Projects/"+project_name+"/"+super_name, "w", encoding="utf-8") as file:
+        for project_data in all_project_data:
+            PD = project_data["PD"]
+            line = template_str.format( project_data['dataset'], PD )
+            file.write(line)
+
 def create_super_launchers_r3( all_project_data, project_name,year ):
         
     #gen launch string
@@ -168,10 +175,11 @@ def create_super_launchers_r3( all_project_data, project_name,year ):
     a4m_template_str= "pushd {0}; ./Makelist.sh 0 0 1 0 {0} {1}; popd; \n"
     m4n_template_str= "pushd {0}; ./Makelist.sh 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher_year("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str, year)
-    create_super_launcher_year("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str, year)
-    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str, year)
-    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str, year)
+
+    create_super_launcher_PD("superlist_gen2digi.sh", project_name, all_project_data, g4d_template_str)
+    create_super_launcher_PD("superlist_digi2aod.sh", project_name, all_project_data, d4a_template_str)
+    create_super_launcher_PD("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
+    create_super_launcher_PD("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
 
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
     create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
@@ -206,12 +214,12 @@ def create_super_launchers_r2( all_project_data, project_name, year ):
     a4m_template_str= "pushd {0}; ./Makelist 0 0 0 0 1 0 {0} {1}; popd; \n"
     m4n_template_str= "pushd {0}; ./Makelist 0 0 0 0 0 1 {0} {1}; popd; \n"
 
-    create_super_launcher_year("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str, year)
-    create_super_launcher_year("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str, year)
-    create_super_launcher_year("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str, year)
-    create_super_launcher_year("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str, year)
-    create_super_launcher_year("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str, year)
-    create_super_launcher_year("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str, year)
+    create_super_launcher_PD("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str)
+    create_super_launcher_PD("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str)
+    create_super_launcher_PD("superlist_digi4hlt.sh", project_name, all_project_data, d4h_template_str)
+    create_super_launcher_PD("superlist_hlt2aod.sh", project_name, all_project_data, h4a_template_str)
+    create_super_launcher_PD("superlist_aod2mini.sh", project_name, all_project_data, a4m_template_str)
+    create_super_launcher_PD("superlist_mini2nano.sh", project_name, all_project_data, m4n_template_str)
     
     driver_template_str = "pushd {0}; ./doDriver_{1}.sh; popd; \n"
     create_super_launcher_year("superdriver.sh", project_name, all_project_data, driver_template_str, year)
