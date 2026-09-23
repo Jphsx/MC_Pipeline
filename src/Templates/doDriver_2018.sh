@@ -20,7 +20,7 @@ cmsDriver.py Configuration/GenProduction/python/${FRAGMENT} \
     --mc \
     -n ${NEVENT}
 
-mv ${NAME}_1_cfg.py ./MC_Pipeline/Projects/{$PROJECT}/${NAME}/
+mv ${NAME}_1_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 cmsDriver.py \
         --python_filename ${NAME}_2_cfg.py \

@@ -207,12 +207,12 @@ def create_super_launchers_r2( all_project_data, project_name, year ):
 
 
     #listmaking string
-    g4s_template_str= "pushd {0}; ./Makelist 1 0 0 0 0 0 {0} {1}; popd; \n"
-    s4d_template_str= "pushd {0}; ./Makelist 0 1 0 0 0 0 {0} {1}; popd; \n"
-    d4h_template_str= "pushd {0}; ./Makelist 0 0 1 0 0 0 {0} {1}; popd; \n"
-    h4a_template_str= "pushd {0}; ./Makelist 0 0 0 1 0 0 {0} {1}; popd; \n"
-    a4m_template_str= "pushd {0}; ./Makelist 0 0 0 0 1 0 {0} {1}; popd; \n"
-    m4n_template_str= "pushd {0}; ./Makelist 0 0 0 0 0 1 {0} {1}; popd; \n"
+    g4s_template_str= "pushd {0}; ./Makelist_UL.sh 1 0 0 0 0 0 {0} {1}; popd; \n"
+    s4d_template_str= "pushd {0}; ./Makelist_UL.sh 0 1 0 0 0 0 {0} {1}; popd; \n"
+    d4h_template_str= "pushd {0}; ./Makelist_UL.sh 0 0 1 0 0 0 {0} {1}; popd; \n"
+    h4a_template_str= "pushd {0}; ./Makelist_UL.sh 0 0 0 1 0 0 {0} {1}; popd; \n"
+    a4m_template_str= "pushd {0}; ./Makelist_UL.sh 0 0 0 0 1 0 {0} {1}; popd; \n"
+    m4n_template_str= "pushd {0}; ./Makelist_UL.sh 0 0 0 0 0 1 {0} {1}; popd; \n"
 
     create_super_launcher_PD("superlist_gen2sim.sh", project_name, all_project_data, g4s_template_str)
     create_super_launcher_PD("superlist_sim2digi.sh", project_name, all_project_data, s4d_template_str)

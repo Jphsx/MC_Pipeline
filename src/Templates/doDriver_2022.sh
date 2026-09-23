@@ -66,7 +66,7 @@ mv ${NAME}_3_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 #also have mini and nano loaded up
 cmsDriver.py  \
-    --python_filename ${NAME}_4.py \
+    --python_filename ${NAME}_4_cfg.py \
     --eventcontent MINIAODSIM \
     --fast \
     --customise Configuration/DataProcessing/Utils.addMonitoring \
@@ -85,7 +85,7 @@ mv ${NAME}_4_cfg.py ./MC_Pipeline/Projects/${PROJECT}/${NAME}/
 
 
 cmsDriver.py \
-    --python_filename ${NAME}_5.py \
+    --python_filename ${NAME}_5_cfg.py \
     --eventcontent NANOAODSIM \
     --customise Configuration/DataProcessing/Utils.addMonitoring \
     --datatier NANOAODSIM \
