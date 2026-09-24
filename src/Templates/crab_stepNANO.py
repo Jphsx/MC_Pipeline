@@ -10,7 +10,7 @@ config.General.workArea = 'crabsubmit'
 
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = NAME+'_5.py'
+config.JobType.psetName = NAME+'_5_cfg.py'
 config.JobType.allowUndistributedCMSSW = True
 
 
