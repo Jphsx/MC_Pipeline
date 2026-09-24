@@ -98,6 +98,8 @@ def create_gridpoint_files_r3(  project_data, project_name, project_year ):
     copy_and_update_template( "src/Templates/crab_stepGEN.py", target_path+"crab_stepGEN.py",{"XXXX":project_data['dataset'], "UUUU":units_per_job, "NNNN":njobs, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/crab_stepDIGI.py", target_path+"crab_stepDIGI.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/crab_stepAOD.py", target_path+"crab_stepAOD.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepMINI.py", target_path+"crab_stepMINI.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepNANO.py", target_path+"crab_stepNANO.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/MakeList.sh", target_path+"Makelist.sh",{})
     copy_and_update_template( "src/Templates/runCrab.sh", target_path+"runCrab.sh",{"XXXX":project_data['dataset']})
 
@@ -118,6 +120,8 @@ def create_gridpoint_files_r2(  project_data, project_name, project_year ):
     copy_and_update_template( "src/Templates/crab_stepDIGI_UL.py", target_path+"crab_stepDIGI_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/crab_stepHLT_UL.py", target_path+"crab_stepHLT_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/crab_stepAOD_UL.py", target_path+"crab_stepAOD_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepMINI_UL.py", target_path+"crab_stepMINI_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
+    copy_and_update_template( "src/Templates/crab_stepNANO_UL.py", target_path+"crab_stepNANO_UL.py",{"XXXX":project_data['dataset'],"PPPP":project_name, "YYYY":project_data['PD']})
     copy_and_update_template( "src/Templates/MakeList_UL.sh", target_path+"Makelist_UL.sh",{})
     copy_and_update_template( "src/Templates/runCrab_UL.sh", target_path+"runCrab_UL.sh",{"XXXX":project_data['dataset']})
 
